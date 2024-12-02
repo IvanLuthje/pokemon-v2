@@ -8,7 +8,6 @@ function menuBar() {
 $(document).ready(function () {
   // Cargar la lista de favoritos desde localStorage
   loadFavorites();
-  loadHistorial();
 
   // Función para buscar Pokémon
   $('.boton_busqueda').click(function () {
@@ -115,7 +114,7 @@ $(document).ready(function () {
           const favoriteItem = `
               <li>
                   <span>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</span>
-                  <button id="eliminar" onclick="eliminar(${fav.id})">&times;</button>
+                  <button id="eliminar" onclick="eliminar(${fav.name})">&times;</button>
               </li>
           `;
           $('#favorites-list').append(favoriteItem);
@@ -144,6 +143,7 @@ $(document).ready(function () {
       favorites = favorites.filter(fav => fav.id !== id);
       localStorage.setItem('favorites', JSON.stringify(favorites));
       loadFavorites();
+      loadHistorial();
   };
   
   $('#eliminar-todos').click(function () {
