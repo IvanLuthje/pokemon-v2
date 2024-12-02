@@ -4,6 +4,30 @@ function menuBar() {
     nav.classList.toggle('active');
 }
 
+window.descripcion = function (){
+    
+    $.ajax({
+        url: 'https://pokeapi.co/api/v2/pokemon-species/' + nombre,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            var desc = data.flavor_text_entries[26].flavor_text;
+            modal.style.display = "block";
+            $(".info").html(
+                "<h1>" + nombre + "</h1>" +
+                "</div>" +
+                "<div class='pokemon'>" + "<img src='" + imagen + "'>" +
+                "<p><strong>Exp: </strong>" + experiencia + "</p>" + "<strong>Peso: </strong>" + peso
+                + "kg</p>" + "<p><strong>Altura: </strong>" + altura
+                + "cm</p>" + "<div>" +
+                "<p>" + "<strong> Descripción: </strong>" + desc + "</p>" +
+                "<button class='compartir'> " + "<i class='fa fa-share-alt' aria-hidden='true'></i>" + "</button>");
+        },
+
+    });
+
+}
+
 
 $(document).ready(function () {
   // Cargar la lista de favoritos desde localStorage
@@ -49,14 +73,16 @@ $(document).ready(function () {
   function mostrarPokemon(data) {
       $('#pokemon-info').empty();
 
+      const image = data.sprites.front_default;
+
       const pokemonCard = `
           <div class="pokemon-card">
-              <img src="${data.sprites.front_default}" alt="${data.name}">
+              <img src="${image}" alt="${data.name}">
               <div>
                   <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
                   <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                   <button class="descripcion"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                  <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+                  <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
               </div>
           </div>
       `;
@@ -66,22 +92,22 @@ $(document).ready(function () {
 
   function mostrarItem(data) {
     $('#pokemon-info').empty();
+    const image = data.sprites.default;
 
     const pokemonCard = `
         <div class="pokemon-card">
-            <img src="${data.sprites.default}" alt="${data.names[5].name}">
+            <img src="${image}" alt="${data.names[5].name}">
             <div>
                 <h3>${data.names[5].name.charAt(0).toUpperCase() + data.names[5].name.slice(1)}</h3>
                 <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                <button class="descripcion"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+                <button class="descripcion" onclick="descripcion${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                <button class="favoritos" onclick="addToFavorites${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
             </div>
         </div>
     `;
 
     $('#pokemon-info').html(pokemonCard);
 }
-
 
 
 // Función para mostrar la información del Pokémon
@@ -128,10 +154,12 @@ $(document).ready(function () {
 
     favorites.forEach(function (fav) {
         const favoriteItem = `
-            <li>
-                <span>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</span>
-                <button id="eliminar" onclick="eliminar(${fav.name})">&times;</button>
-            </li>
+                <div class="pokemon-card">
+                    <span>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</span>
+                    <button id="eliminar" onclick="eliminar(${fav.name})">&times;</button>
+                    <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                    <button class="descripcion"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+               </div>
         `;
         $('#historial-list').append(favoriteItem);
     });
@@ -144,11 +172,13 @@ $(document).ready(function () {
       favorites = favorites.filter(fav => fav.id !== id);
       localStorage.setItem('favorites', JSON.stringify(favorites));
       loadFavorites();
+ 
   };
   
   $('#eliminar-todos').click(function () {
     localStorage.clear();
     loadFavorites();
+    loadHistorial();
   });
 
 
