@@ -156,7 +156,7 @@ $(document).ready(function () {
         const favoriteItem = `
                 <div class="pokemon-card">
                     <span>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</span>
-                    <button id="eliminar" onclick="eliminar(${fav.name})">&times;</button>
+                    <button id="eliminar" onclick="eliminar(${fav.id})">&times;</button>
                     <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                     <button class="descripcion"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                </div>
@@ -172,6 +172,7 @@ $(document).ready(function () {
       favorites = favorites.filter(fav => fav.id !== id);
       localStorage.setItem('favorites', JSON.stringify(favorites));
       loadFavorites();
+      loadHistorial();
  
   };
   
