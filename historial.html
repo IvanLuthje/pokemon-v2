@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Pokemon</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/style2.css'>
+    <link rel="icon" type="image/x-icon" href="img/pokeball-logo.png">
+    <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src='js/main.js'></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Pokémon</h1>
+            </div>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="pokedex.html">Pokedex</a></li>
+                <li><a href="historial.html">Historial</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                &#9776;
+            </div>
+        </nav>
+    </header>
+
+    <h1>Buscador de Pokémon</h1>
+
+    <div id="search-container">
+        <input type="text" id="pokemon-name" placeholder="Ingresa el nombre del Pokémon" />
+        <button id="search-btn">Buscar</button>
+    </div>
+
+    <div id="pokemon-info"></div>
+    <aside>
+        <h2>Lista de Favoritos</h2>
+        <ul id="favorites-list"></ul>
+    </aside>
+
+
+    <script src="app.js"></script>
+</body>
+</html>

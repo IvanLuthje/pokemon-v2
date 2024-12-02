@@ -1,3 +1,10 @@
+// Función para activar/desactivar el menú hamburguesa
+function menuBar() {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('active');
+}
+
+
 $(document).ready(function () {
   // Cargar la lista de favoritos desde localStorage
   loadFavorites();

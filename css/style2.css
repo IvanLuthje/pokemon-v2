@@ -1,0 +1,174 @@
+/* Reset de márgenes y padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+@font-face {
+	font-family: pokemon-font;
+	src: url(../fonts/pokemonsolid.ttf);
+}
+
+@font-face {
+	font-family: lato;
+	src: url(../fonts/Lato-Light.ttf);
+}
+
+/* Estilo del Header */
+header {
+    background-color: #fede84;
+    padding: 10px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav .logo h1 {
+    color: #3c3c3c;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    padding: 5px 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #3c3c3c;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #2b2b2b;
+}
+
+/* Estilo para el menú hamburguesa en pantallas pequeñas */
+.responsive {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #ffcb05;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Sección de Pokémon */
+.pokemon-list {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pokemon {
+    text-align: center;
+}
+
+.pokemon img {
+    width: 100px;
+    height: 100px;
+}
+
+.pokemon h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.imagen img {
+	width: 5%;
+}
+
+/* pokemon cards */
+
+.pokemon-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: white;
+}
+
+.pokemon-card img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-family: lato;
+}
+
+aside {
+  width: 15%;
+  float: right;
+  color: #29627e;
+}
+
+
+
+/* Estilo Responsivo */
+@media (max-width: 768px) {
+    
+    aside{
+        display: none;
+    }
+    
+    nav ul {
+        display: none;
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+    }
+    
+    
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .responsive {
+        display: block;
+    }
+
+    nav.active ul {
+        display: block;
+    }
+
+    .pokemon-list {
+        flex-direction: column;
+        align-items: center;
+    }
+}
