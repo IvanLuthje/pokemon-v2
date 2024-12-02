@@ -23,9 +23,10 @@
             </div>
             <ul class="menu">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="pokedex.html">Pokédex</a></li>
-                <li><a href="#galeria">Galería</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="pokedex.html">Pokedex</a></li>
+                <li><a href="historial.html">Historial</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="compartir.html">Compartir</a></li>
             </ul>
             <div class="responsive" onclick="menuBar()">
                 &#9776;
@@ -37,13 +38,14 @@
 
     <div id="search-container">
         <input type="text" id="pokemon-name" placeholder="Ingresa el nombre del Pokémon" />
-        <button id="search-btn">Buscar</button>
+        <button class="boton_busqueda" id="busqueda" type="button" aria-label="Buscar"><i class="fa fa-search"></i></button>
     </div>
 
     <div id="pokemon-info"></div>
     <aside>
         <h2>Favoritos</h2>
         <div id="favorites-list"></div>
+        <button id="eliminar-todos">Eliminar todos</button>
     </aside>
 
 
