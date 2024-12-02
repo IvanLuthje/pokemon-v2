@@ -4,29 +4,7 @@ function menuBar() {
     nav.classList.toggle('active');
 }
 
-window.descripcion = function (){
-    
-    $.ajax({
-        url: 'https://pokeapi.co/api/v2/pokemon-species/' + nombre,
-        type: "GET",
-        dataType: "json",
-        success: function (data) {
-            var desc = data.flavor_text_entries[26].flavor_text;
-            modal.style.display = "block";
-            $(".info").html(
-                "<h1>" + nombre + "</h1>" +
-                "</div>" +
-                "<div class='pokemon'>" + "<img src='" + imagen + "'>" +
-                "<p><strong>Exp: </strong>" + experiencia + "</p>" + "<strong>Peso: </strong>" + peso
-                + "kg</p>" + "<p><strong>Altura: </strong>" + altura
-                + "cm</p>" + "<div>" +
-                "<p>" + "<strong> Descripción: </strong>" + desc + "</p>" +
-                "<button class='compartir'> " + "<i class='fa fa-share-alt' aria-hidden='true'></i>" + "</button>");
-        },
 
-    });
-
-}
 
 
 $(document).ready(function () {
@@ -106,7 +84,33 @@ $(document).ready(function () {
         </div>
     `;
 
+    window.descripcion = function (data){
+    
+        $.ajax({
+            url: 'https://pokeapi.co/api/v2/pokemon-species/' + nombre,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var desc = data.flavor_text_entries[26].flavor_text;
+                modal.style.display = "block";
+                $(".info").html(
+                    "<h1>" + nombre + "</h1>" +
+                    "</div>" +
+                    "<div class='pokemon'>" + "<img src='" + imagen + "'>" +
+                    "<p><strong>Exp: </strong>" + experiencia + "</p>" + "<strong>Peso: </strong>" + peso
+                    + "kg</p>" + "<p><strong>Altura: </strong>" + altura
+                    + "cm</p>" + "<div>" +
+                    "<p>" + "<strong> Descripción: </strong>" + desc + "</p>" +
+                    "<button class='compartir'> " + "<i class='fa fa-share-alt' aria-hidden='true'></i>" + "</button>");
+            },
+    
+        });
+    
+    }
+
     $('#pokemon-info').html(pokemonCard);
+
+
 }
 
 
