@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "lato";	
     background-color: #f4f4f9;
     color: #000000;
 }
@@ -324,8 +324,8 @@ h2 {
 	border-radius: 10px;
 	text-align: center;
     margin-top: 20px;
-    padding: 50px;
-	width: 30%;
+    padding: 30px;
+	width: 50%;
     background-color: #FFFFFF;
 }
 
