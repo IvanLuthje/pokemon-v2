@@ -22,6 +22,7 @@ body {
 }
 
 /* Tags semanticos */
+
 header {
 	background-color: #00435F;
 	padding: 10px 20px;
@@ -72,6 +73,24 @@ h2 {
 	color: #ffcb05;
 	font-size: 2rem;
 	margin-bottom: 10px;
+}
+
+
+/* Footer */
+footer {
+	background-color: #333;
+	color: #fff;
+	text-align: center;
+	padding: 10px 0;
+	font-family: lato;
+}
+
+/* aside */
+
+aside {
+	width: 15%;
+	float: right;
+	color: #00435f;
 }
 
 
@@ -340,22 +359,6 @@ h2 {
 
 
 
-/* Footer */
-footer {
-	background-color: #333;
-	color: #fff;
-	text-align: center;
-	padding: 10px 0;
-	font-family: lato;
-}
-
-/* aside */
-
-aside {
-	width: 15%;
-	float: right;
-	color: #00435f;
-}
 
 
 
