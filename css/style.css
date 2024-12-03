@@ -32,10 +32,9 @@ nav {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: 20px;
 	background-color: #FEDE84;
-	font-family: "lato";
 	width: 100%;
+	text-transform: uppercase;
 }
 
 
@@ -345,6 +344,8 @@ footer {
 	padding: 10px 0;
 	font-family: lato;
 }
+
+/* aside */
 
 aside {
 	width: 15%;
