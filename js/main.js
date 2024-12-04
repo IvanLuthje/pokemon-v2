@@ -4,6 +4,10 @@ function menuBar() {
     nav.classList.toggle('active');
 }
 
+function cerrar(){
+    modal.style.display = "none";
+}
+
 
 
 $(document).ready(function () {
@@ -101,12 +105,15 @@ $(document).ready(function () {
 
              });
 
+  
+
          }
 
         $('#pokemon-info').html(pokemonCard);
 
 
     }
+
 
 
     // Función para mostrar la información del Pokémon

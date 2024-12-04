@@ -168,6 +168,16 @@ aside {
 	width: 80%;
 }
 
+.cerrar {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+/* Id nombre */
+
+
 .id_nombre {
 	height: 50px;
 	border-radius: 30px;
