@@ -1,3 +1,12 @@
+function cerrar(){
+    modal.style.display = "none";
+}
+
+function Compartir() {
+    window.location.href = 'compartir.html';
+
+};
+
 
 
     $(document).ready(function() {
@@ -6,18 +15,41 @@
       
         for (let i = 1; i <= 12; i++) {
           $.ajax({
-            url: url + i, // URL de la API para cada Pokémon (del 1 al 10)
-            method: 'GET', // Método GET para obtener la información
+            url: url + i,
+            method: 'GET',
             success: function(data) {
                 mostrarPokemon(data);
+                ("main").html("<button class='vermas' onclick='verMas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>")
+
+                
+
             },
             error: function() {
               alert("Error al obtener los datos del Pokémon");
             }
             
+            
           });
         }
       });
+
+      function verMas(){
+        const url = "https://pokeapi.co/api/v2/pokemon/";
+        for (let i = 13; i <= 24; i++) {
+            $.ajax({
+              url: url + i,
+              method: 'GET',
+              success: function(data) {
+                  mostrarPokemon(data);
+              },
+              error: function() {
+                alert("Error al obtener los datos del Pokémon");
+              }
+              
+            });
+        }
+
+      }
       
 
 
@@ -31,11 +63,35 @@
               <div>
                   <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
                   <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                  <button class="descripcion"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-                  <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+                <button class="descripcion" onclick="descripcion(${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
               </div>
           </div>
       `;
+
+      window.descripcion = function () {
+
+        $.ajax({
+            
+            url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name ,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var desc = data.flavor_text_entries[26].flavor_text;
+                var imagen = image;
+                modal.style.display = "block";
+                $(".info").html(
+                    "<h3>" + data.name.charAt(0).toUpperCase() + data.name.slice(1) + "</h3>" +
+                    "<img src='" + imagen + "'>" +
+                    "</div>" +
+                    "<p>" + "<strong> Descripción: </strong>" + desc + "</p>" +
+                    "<button class='compartir' onclick='Compartir()'> " + "<i class='fa fa-share-alt' aria-hidden='true'></i>" + "</button>");
+            },
+
+        });
+
+            }
+      
     
         $('#pokemon-info').append(pokemonCard);
     }
@@ -102,6 +158,9 @@
         loadHistorial();
 
     };
+
+    
+  
 
     $('#eliminar-todos').click(function () {
         localStorage.clear();

@@ -168,6 +168,10 @@ aside {
 	width: 80%;
 }
 
+.info img {
+	width: 30%;
+}
+
 .cerrar {
 	color: #aaaaaa;
 	float: right;
@@ -227,6 +231,19 @@ aside {
 }
 
 .enviar:hover {
+	opacity: 70%;
+}
+
+.vermas {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #24ab2c;
+	border: none;
+	color: #ffffff|;
+}
+
+.vermas:hover {
 	opacity: 70%;
 }
 
@@ -320,6 +337,14 @@ aside {
 	margin-bottom: 0.1%;
 	width: 80%;
 }
+
+.icono_redes {
+    font-size: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
 
 /* Formulario */
 
