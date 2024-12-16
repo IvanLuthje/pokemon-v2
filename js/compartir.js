@@ -1,3 +1,17 @@
+function cancelar (){
+    var respuesta = confirm('Desea volver a la pagina principal?')
+    if (respuesta == true){
+      location.href="index.html"
+    }
+    else{
+     return false;
+    }
+ }
+
+function reset() {
+    location.reload(true)
+}
+
 function enviar() {
     const form = document.getElementById('formulario_compartir');
     // const emaile = form.email_emisor.value;

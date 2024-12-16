@@ -9,8 +9,16 @@ function Compartir() {
 
 
 
+
+
+function menuBar() {
+  var nav = document.querySelector('nav');
+  nav.classList.toggle('active');
+}
+
+
     $(document).ready(function() {
-        loadHistorial();
+        loadHistorial(); 
         const url = "https://pokeapi.co/api/v2/pokemon/";
       
         for (let i = 1; i <= 12; i++) {
@@ -19,7 +27,7 @@ function Compartir() {
             method: 'GET',
             success: function(data) {
                 mostrarPokemon(data);
-                ("main").html("<button class='vermas' onclick='verMas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>")
+                    // ("main").html("<button class='vermas' onclick='verMas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>")
 
                 
 
@@ -61,8 +69,8 @@ function Compartir() {
           <div class="pokemon-card">
               <img src="${image}" alt="${data.name}">
               <div>
-                  <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
-                  <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
+                <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                 <button class="descripcion" onclick="descripcion(${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                 <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
               </div>
@@ -110,11 +118,13 @@ function Compartir() {
         }
 
         else {
-            alert("El elemento ya está agregado")
+          $('#alert-favoritos').html("<i class='fa fa-heart' aria-hidden='true'></i> " + name + " ya está agregado a la lista")
         }
 
 
     };
+
+
 
     // Función para cargar la lista de favoritos desde localStorage
     function loadFavorites() {
@@ -133,21 +143,36 @@ function Compartir() {
     }
 
     function loadHistorial() {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        $('#historial-list').empty();
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      $('#historial-list').empty();
+  
+      if (favorites.length){
+          favorites.forEach(function (fav) {
+              const favoriteItem = `  
+                  <div class="pokemon-card">
+                      <img src=${fav.sprite}>
+                      <h3>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</h3>
+                      <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                      <button class="descripcion" onclick="descripcion(${fav.id}, '${fav.name}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                      <button id="eliminar" onclick="eliminar(${fav.id})"><i class="fa fa-times" aria-hidden="true"></i></button>
+                 </div>
+          `;
+              $('#historial-list').append(favoriteItem);
+          });
+      }
 
-        favorites.forEach(function (fav) {
-            const favoriteItem = `
-                <div class="pokemon-card">
-                    <button id="eliminar" onclick="eliminar(${fav.id})">&times;</button>
-                    <h3>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</h3>
-                    <button class="compartir"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                    <button class="descripcion"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
-               </div>
-        `;
-            $('#historial-list').append(favoriteItem);
-        });
+  
+      else{
+          $('#historial-list').html("No se encuentran favoritos")
+      }
+
+ 
     }
+
+    
+
+    
+
 
     // Función para eliminar un Pokémon de los favoritos
     window.eliminar = function (id) {

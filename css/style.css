@@ -63,6 +63,7 @@ nav ul li a:hover {
 main {
 	padding: 20px;
 	min-height: 768px;
+	margin-left:5%;
 }
 
 .main_comp {
@@ -79,11 +80,16 @@ h2 {
 
 /* Footer */
 footer {
-	background-color: #333;
+	background-color: #00435F;
 	color: #fff;
 	text-align: center;
 	padding: 10px 0;
 	font-family: lato;
+}
+
+#inicio img{
+	width: 90%;
+	height: 500px;
 }
 
 /* aside */
@@ -92,6 +98,10 @@ aside {
 	width: 15%;
 	float: right;
 	color: #00435f;
+}
+
+#favorites-list-resp{
+	display: none;
 }
 
 
@@ -114,7 +124,7 @@ aside {
 
 
 /* Sección de Pokémon */
-#pokemon-info{
+#pokemon-info, #historial-list{
 	display: flex;
 	flex-wrap: wrap;
 	}
@@ -311,6 +321,15 @@ aside {
 	color: #ffffff;
 }
 
+.pokemon-card #eliminar {
+	width: 50px;
+	height: 50px;
+	border-radius: 30px;
+	background-color: #ff0000;
+	border: none;
+	color: #ffffff;
+}
+
 #eliminar:hover {
 	opacity: 70%;
 }
@@ -400,6 +419,7 @@ aside {
 
 
 #map {
+	height: 768px;  
 	width: 100%;
 }
 
@@ -432,10 +452,17 @@ aside {
 		display: block;
 	}
 
+	#
 	.pokemon-list {
 		flex-direction: column;
 		align-items: center;
 	}
+
+	#favorites-list-resp{
+		padding: 20px;
+	}
+
+	
 
 	/* logo */
 
