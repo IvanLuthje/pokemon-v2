@@ -5,7 +5,7 @@ function menuBar() {
 }
 
 
-function cerrar(){
+function cerrar() {
     modal.style.display = "none";
 }
 
@@ -20,14 +20,16 @@ $(document).ready(function () {
     // Cargar la lista de favoritos desde localStorage
     loadFavorites();
     loadHistorial();
-  
+
+
+
 
     // Función para buscar Pokémon
     $('.boton_busqueda').click(function () {
         var id_nombre = $("#nombre").val().toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
         var url = `https://pokeapi.co/api/v2/pokemon/${id_nombre}`;
         var alert_pokemon = `<i class='fas fa-exclamation-triangle'></i> Pokémon ${id_nombre.charAt(0).toUpperCase() + id_nombre.slice(1)} no disponible`
-        var alert_item= `<i class='fas fa-exclamation-triangle'></i> Item ${id_nombre.charAt(0).toUpperCase() + id_nombre.slice(1)} no disponible`
+        var alert_item = `<i class='fas fa-exclamation-triangle'></i> Item ${id_nombre.charAt(0).toUpperCase() + id_nombre.slice(1)} no disponible`
         if (filtro.value == 'nombre') {
             $.ajax({
                 url: url,
@@ -81,37 +83,39 @@ $(document).ready(function () {
           </div>
       `;
 
-      window.descripcion = function () {
 
-        $.ajax({
-            url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.id,
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                var desc = data.flavor_text_entries[26].flavor_text;
-                var imagen = image;
-                modal.style.display = "block";
-                var info = `
-                    <p><strong>#</strong>${id}</p>
-                    <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
-                    <img src=${imagen}>
-                    <p><strong>Descripción:</strong>${desc}</p>
-                    <p><strong>Altura:</strong>${altura}m</p>
-                    <p><strong>Experiencia:</strong>${experiencia}</p>
-                    <p><strong>Peso:</strong>${peso}kg</p>
-                    <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                    <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+        window.descripcion = function () {
 
-                `
-                
-                $('.info').html(info);
-            },
+            $.ajax({
+                url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var desc = data.flavor_text_entries[26].flavor_text;
+                    var imagen = image;
+                    modal.style.display = "block";
+                    var info = `
+                <p><strong>#</strong>${id}</p>
+                <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
+                <img src=${imagen}>
+                <p><strong>Descripción:</strong>${desc}</p>
+                <p><strong>Altura:</strong>${altura}m</p>
+                <p><strong>Experiencia:</strong>${experiencia}</p>
+                <p><strong>Peso:</strong>${peso}kg</p>
+                <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
-        });
+            `
+
+                    $('.info').html(info);
+                },
+
+            });
 
 
 
-    }
+        }
+
 
         $('#pokemon-info').html(pokemonCard);
     }
@@ -132,8 +136,39 @@ $(document).ready(function () {
         </div>
     `;
 
+        window.descripcion = function () {
+
+            $.ajax({
+                url: 'https://pokeapi.co/api/v2/item/' + data.id,
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var imagen = image;
+                    var costo = data.cost
+                    var tipo = data.category.name
+                    var desc = data.flavor_text_entries[13].text
+                    var modal = document.getElementById("modal");
+                    modal.style.display = "block";
+                    var info = `
+                            <p><strong>#</strong>${data.id}</p>
+                            <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
+                            <div class='item'><img src=${imagen}></div>
+                            <p>Costo: ${costo} </p>
+                            <p>Tipo:  ${tipo} </p>
+                            <p>Descripción: ${desc} </p>`
+
+                    $('.info').html(info);
+                },
+
+            });
+
+
+
+        }
+
 
         $('#pokemon-info').html(pokemonCard);
+
 
 
     }
@@ -157,14 +192,14 @@ $(document).ready(function () {
 
     };
 
-    
+
 
     // Función para cargar la lista de favoritos desde localStorage
     function loadFavorites() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#favorites-list').empty();
 
-        if (favorites.length){
+        if (favorites.length) {
 
             favorites.forEach(function (fav) {
                 var favoriteItem = `
@@ -178,7 +213,7 @@ $(document).ready(function () {
 
         }
 
-        else{
+        else {
             $('#favorites-list').html("No se encuentran favoritos")
         }
 
@@ -187,8 +222,8 @@ $(document).ready(function () {
     function loadHistorial() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#historial-list').empty();
-    
-        if (favorites.length){
+
+        if (favorites.length) {
             favorites.forEach(function (fav) {
                 var favoriteItem = `  
                     <div class="pokemon-card">
@@ -200,21 +235,49 @@ $(document).ready(function () {
                    </div>
             `;
 
-            
+
                 $('#historial-list').append(favoriteItem);
             });
         }
-  
-    
-        else{
+
+
+        else {
             $('#historial-list').html("No se encuentran favoritos")
         }
-  
-   
-      }
 
-    
-    
+
+    }
+
+
+    function loadHistorial() {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        $('#historial-list').empty();
+
+        if (favorites.length) {
+            favorites.forEach(function (fav) {
+                const favoriteItem = `  
+                        <div class="pokemon-card">
+                            <img src=${fav.sprite}>
+                            <h3>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</h3>
+                            <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                            <button class="descripcion" onclick="descripcion(${fav.id}, '${fav.name}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
+                            <button id="eliminar" onclick="eliminar(${fav.id})"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </div>
+                `;
+                $('#historial-list').append(favoriteItem);
+            });
+        }
+
+
+        else {
+            $('#historial-list').html("No se encuentran favoritos")
+        }
+
+
+    }
+
+
+
 
     // Función para eliminar un Pokémon de los favoritos
     window.eliminar = function (id) {

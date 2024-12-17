@@ -1,12 +1,12 @@
-function cancelar (){
+function cancelar() {
     var respuesta = confirm('Desea volver a la pagina principal?')
-    if (respuesta == true){
-      location.href="index.html"
+    if (respuesta == true) {
+        location.href = "index.html"
     }
-    else{
-     return false;
+    else {
+        return false;
     }
- }
+}
 
 function reset() {
     location.reload(true)
