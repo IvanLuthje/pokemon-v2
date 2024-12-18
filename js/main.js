@@ -175,11 +175,11 @@ $(document).ready(function () {
 
     // Función para agregar Pokémon a favoritos
     window.addToFavorites = function (id, name, sprite) {
-        var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${name} ya está agregado a la lista`
+        var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${name.charAt(0).toUpperCase() + name.slice(1)} ya está agregado a la lista`
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         // Comprobar si el Pokémon ya está en favoritos
-        if (!favorites.some(fav => fav.id === id)) {
+        if (!favorites.some(fav => fav.name === id)) {
             favorites.push({ id, name, sprite });
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();

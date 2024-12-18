@@ -107,6 +107,7 @@ function mostrarPokemon(data) {
 
 // Función para agregar Pokémon a favoritos
 window.addToFavorites = function (id, name, sprite) {
+  var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> Pokemon ${name} ya está agregado a la lista`
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
   // Comprobar si el Pokémon ya está en favoritos
@@ -118,7 +119,7 @@ window.addToFavorites = function (id, name, sprite) {
   }
 
   else {
-    $('#alert-favoritos').html("<i class='fa fa-heart' aria-hidden='true'></i> " + name + " ya está agregado a la lista")
+    $('#alert-favoritos').html(alert_added)
   }
 
 
@@ -168,6 +169,35 @@ function loadHistorial() {
 
 
 }
+
+function loadCards() {
+  $.ajax({
+      url: 'https://api.pokemontcg.io/v2/cards?pageSize=10',  // URL de la API de cartas Pokémon
+      method: 'GET',
+      success: function(response) {
+          $('#cards-container').empty();
+
+          // Iterar sobre las cartas recibidas y agregar al DOM
+          response.data.forEach(function(card) {
+              const cardElement = `
+                  <div class="card">
+                      <img src="${card.images.small}" alt="${card.name}">
+                      <h3>${card.name}</h3>
+                      <p>Tipo: ${card.types ? card.types.join(', ') : 'Desconocido'}</p>
+                      <p>Rareza: ${card.rarity || 'Desconocida'}</p>
+                  </div>
+              `;
+              $('#cards-container').append(cardElement);
+          });
+      },
+      error: function() {
+        $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
+      }
+  });
+}
+
+loadCards();
+
 
 
 
