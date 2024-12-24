@@ -73,6 +73,7 @@ $(document).ready(function () {
 
         var pokemonCard = `
           <div class="pokemon-card">
+              <p><strong>#${id}</strong></p>
               <img src="${image}" alt="${data.name}">
               <div>
                   <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
@@ -123,9 +124,11 @@ $(document).ready(function () {
     function mostrarItem(data) {
         $('#pokemon-info').empty();
         var image = data.sprites.default;
+        var id = data.id
 
         var pokemonCard = `
         <div class="pokemon-card">
+            <p><strong>#${id}</strong></p>
             <img src="${image}" alt="${data.names[5].name}">
             <div>
                 <h3>${data.names[5].name.charAt(0).toUpperCase() + data.names[5].name.slice(1)}</h3>

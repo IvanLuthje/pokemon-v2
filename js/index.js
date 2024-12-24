@@ -19,7 +19,7 @@ function menuBar() {
 
 $(document).ready(function () {
   loadHistorial();
-  const url = "https://pokeapi.co/api/v2/pokemon/";
+  var url = "https://pokeapi.co/api/v2/pokemon/";
 
   for (let i = 1; i <= 12; i++) {
     $.ajax({
@@ -42,7 +42,7 @@ $(document).ready(function () {
 });
 
 function verMas() {
-  const url = "https://pokeapi.co/api/v2/pokemon/";
+  var url = "https://pokeapi.co/api/v2/pokemon/";
   for (let i = 13; i <= 24; i++) {
     $.ajax({
       url: url + i,
@@ -63,9 +63,9 @@ function verMas() {
 
 function mostrarPokemon(data) {
 
-  const image = data.sprites.front_default;
+  var image = data.sprites.front_default;
 
-  const pokemonCard = `
+  var pokemonCard = `
           <div class="pokemon-card">
               <img src="${image}" alt="${data.name}">
               <div>
@@ -129,11 +129,11 @@ window.addToFavorites = function (id, name, sprite) {
 
 // Función para cargar la lista de favoritos desde localStorage
 function loadFavorites() {
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   $('#favorites-list').empty();
 
   favorites.forEach(function (fav) {
-    const favoriteItem = `
+    var favoriteItem = `
               <li>
                   <span>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</span>
                   <button id="eliminar" onclick="eliminar(${fav.id})">&times;</button>
@@ -144,12 +144,12 @@ function loadFavorites() {
 }
 
 function loadHistorial() {
-  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   $('#historial-list').empty();
 
   if (favorites.length) {
     favorites.forEach(function (fav) {
-      const favoriteItem = `  
+      var favoriteItem = `  
                   <div class="pokemon-card">
                       <img src=${fav.sprite}>
                       <h3>${fav.name.charAt(0).toUpperCase() + fav.name.slice(1)}</h3>
@@ -172,14 +172,14 @@ function loadHistorial() {
 
 function loadCards() {
   $.ajax({
-      url: 'https://api.pokemontcg.io/v2/cards?pageSize=10',  // URL de la API de cartas Pokémon
-      method: 'GET',
-      success: function(response) {
-          $('#cards-container').empty();
+    url: 'https://api.pokemontcg.io/v2/cards?pageSize=10',  // URL de la API de cartas Pokémon
+    method: 'GET',
+    success: function (response) {
+      $('#cards-container').empty();
 
-          // Iterar sobre las cartas recibidas y agregar al DOM
-          response.data.forEach(function(card) {
-              const cardElement = `
+      // Iterar sobre las cartas recibidas y agregar al DOM
+      response.data.forEach(function (card) {
+        var cardElement = `
                   <div class="card">
                       <img src="${card.images.small}" alt="${card.name}">
                       <h3>${card.name}</h3>
@@ -187,12 +187,12 @@ function loadCards() {
                       <p>Rareza: ${card.rarity || 'Desconocida'}</p>
                   </div>
               `;
-              $('#cards-container').append(cardElement);
-          });
-      },
-      error: function() {
-        $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
-      }
+        $('#cards-container').append(cardElement);
+      });
+    },
+    error: function () {
+      $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
+    }
   });
 }
 
