@@ -100,13 +100,14 @@ $(document).ready(function () {
                 <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
                 <img src=${imagen}>
                 <p><strong>Descripción:</strong>${desc}</p>
-                <p><strong>Altura:</strong>${altura}m</p>
+                <p><strong>Altura:</strong>${altura.toFixed(2)}m</p>
                 <p><strong>Experiencia:</strong>${experiencia}</p>
                 <p><strong>Peso:</strong>${peso}kg</p>
                 <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                 <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
             `
+           
 
                     $('.info').html(info);
                 },
@@ -182,7 +183,7 @@ $(document).ready(function () {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         // Comprobar si el Pokémon ya está en favoritos
-        if (!favorites.some(fav => fav.name === id)) {
+        if (!favorites.some(fav => fav.id === id)) {
             favorites.push({ id, name, sprite });
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();
@@ -194,6 +195,8 @@ $(document).ready(function () {
 
 
     };
+
+    
 
 
 
