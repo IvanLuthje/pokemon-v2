@@ -377,7 +377,7 @@ h1 {
 	border: none;
 	font-family: 'lato';
 	margin-bottom: 0.1%;
-	width: 90%;
+	width: 92%;
 }
 
 .icono_redes {
@@ -424,6 +424,19 @@ h1 {
 
 
 /* pokemon cards */
+
+#pokedex-info .pokemon-card {
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 20px;
+	margin: 5px;
+	padding: 40px;
+	width: 30%;
+	box-shadow: 0 4px 8px #BBBBBB;
+	margin-left:25%;
+
+	background-color: #FFFFFF;
+}
 
 .pokemon-card {
 	border-radius: 10px;

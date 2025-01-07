@@ -38,7 +38,7 @@ $(document).ready(function () {
                     mostrarPokemon(data);
                 },
                 error: function () {
-                    $('#pokemon-info').html(alert_pokemon);
+                    $('#pokedex-info').html(alert_pokemon);
                 }
             });
         }
@@ -51,7 +51,7 @@ $(document).ready(function () {
                     mostrarItem(data);
                 },
                 error: function () {
-                    $('#pokemon-info').html(alert_item);
+                    $('#pokedex-info').html(alert_item);
                 }
             });
         }
@@ -63,7 +63,7 @@ $(document).ready(function () {
     // Mostrar info sobre Pokemons e Items
 
     function mostrarPokemon(data) {
-        $('#pokemon-info').empty();
+        $('#pokedex-info').empty();
 
         var image = data.sprites.front_default;
         var experiencia = data.base_experience
@@ -96,17 +96,17 @@ $(document).ready(function () {
                     var imagen = image;
                     modal.style.display = "block";
                     var info = `
-                <p><strong>#</strong>${id}</p>
-                <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
-                <img src=${imagen}>
-                <p><strong>Descripción:</strong>${desc}</p>
-                <p><strong>Altura:</strong>${altura.toFixed(2)}m</p>
-                <p><strong>Experiencia:</strong>${experiencia}</p>
-                <p><strong>Peso:</strong>${peso}kg</p>
-                <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
-                <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
+                    <p><strong>#</strong>${id}</p>
+                    <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
+                    <img src=${imagen}>
+                    <p><strong>Descripción:</strong>${desc}</p>
+                    <p><strong>Altura:</strong>${altura.toFixed(2)}m</p>
+                    <p><strong>Experiencia:</strong>${experiencia}</p>
+                    <p><strong>Peso:</strong>${peso}kg</p>
+                    <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                    <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
-            `
+                    `
            
 
                     $('.info').html(info);
@@ -119,11 +119,11 @@ $(document).ready(function () {
         }
 
 
-        $('#pokemon-info').html(pokemonCard);
+        $('#pokedex-info').html(pokemonCard);
     }
 
     function mostrarItem(data) {
-        $('#pokemon-info').empty();
+        $('#pokedex-info').empty();
         var image = data.sprites.default;
         var id = data.id
 
@@ -171,7 +171,7 @@ $(document).ready(function () {
         }
 
 
-        $('#pokemon-info').html(pokemonCard);
+        $('#pokedex-info').html(pokemonCard);
 
 
 
@@ -183,7 +183,7 @@ $(document).ready(function () {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
         // Comprobar si el Pokémon ya está en favoritos
-        if (!favorites.some(fav => fav.id === id)) {
+        if (!favorites.some(fav => fav.name === name)) {
             favorites.push({ id, name, sprite });
             localStorage.setItem('favorites', JSON.stringify(favorites));
             loadFavorites();
@@ -229,6 +229,8 @@ $(document).ready(function () {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#historial-list').empty();
 
+        
+
         if (favorites.length) {
             favorites.forEach(function (fav) {
                 var favoriteItem = `  
@@ -244,6 +246,8 @@ $(document).ready(function () {
 
                 $('#historial-list').append(favoriteItem);
             });
+
+            
         }
 
 

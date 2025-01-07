@@ -13,7 +13,7 @@ function Compartir() {
 
 function menuBar() {
   var nav = document.querySelector('nav');
-  nav.classList.toggle('active');
+  nav.classList.toggle('active');     
 }
 
 
@@ -41,6 +41,8 @@ $(document).ready(function () {
   }
 });
 
+
+
 function verMas() {
   var url = "https://pokeapi.co/api/v2/pokemon/";
   for (let i = 13; i <= 24; i++) {
@@ -64,6 +66,10 @@ function verMas() {
 function mostrarPokemon(data) {
 
   var image = data.sprites.front_default;
+  var experiencia = data.base_experience
+  var id = data.id
+  var peso = data.weight / 10
+  var altura = data.height / 10
 
   var pokemonCard = `
           <div class="pokemon-card">
@@ -77,26 +83,33 @@ function mostrarPokemon(data) {
           </div>
       `;
 
-  window.descripcion = function () {
+      window.descripcion = function () {
 
-    $.ajax({
+        $.ajax({
+            url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var desc = data.flavor_text_entries[26].flavor_text;
+                var imagen = image;
+                modal.style.display = "block";
+                var info = `
+                <p><strong>#</strong>${id}</p>
+                <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
+                <img src=${imagen}>
+                <p><strong>Descripción:</strong>${desc}</p>
+                <p><strong>Altura:</strong>${altura.toFixed(2)}m</p>
+                <p><strong>Experiencia:</strong>${experiencia}</p>
+                <p><strong>Peso:</strong>${peso}kg</p>
+                <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
-      url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        var desc = data.flavor_text_entries[26].flavor_text;
-        var imagen = image;
-        modal.style.display = "block";
-        $(".info").html(
-          "<h3>" + data.name.charAt(0).toUpperCase() + data.name.slice(1) + "</h3>" +
-          "<img src='" + imagen + "'>" +
-          "</div>" +
-          "<p>" + "<strong> Descripción: </strong>" + desc + "</p>" +
-          "<button class='compartir' onclick='Compartir()'> " + "<i class='fa fa-share-alt' aria-hidden='true'></i>" + "</button>");
-      },
+                `
+       
 
-    });
+                $('.info').html(info);
+            },
+          });
 
   }
 
@@ -146,7 +159,7 @@ function loadFavorites() {
 function loadHistorial() {
   var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   $('#historial-list').empty();
-
+ 
   if (favorites.length) {
     favorites.forEach(function (fav) {
       var favoriteItem = `  
