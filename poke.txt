@@ -80,3 +80,87 @@
     </script>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Descriptions</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .pokemon-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .pokemon-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        .pokemon-card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .pokemon-card img {
+            width: 100px;
+            height: 100px;
+        }
+        .pokemon-card p {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>First 10 Pokémon</h1>
+    <div class="pokemon-container"></div>
+
+    <script>
+        $(document).ready(function () {
+            const container = $('.pokemon-container');
+
+            // Fetch the first 10 Pokémon
+            for (let i = 1; i <= 10; i++) {
+                $.ajax({
+                    url: `https://pokeapi.co/api/v2/pokemon/${i}/`,
+                    method: 'GET',
+                    success: function (pokemon) {
+                        // Fetch the species data to get the description
+                        $.ajax({
+                            url: pokemon.species.url,
+                            method: 'GET',
+                            success: function (species) {
+                                const description = species.flavor_text_entries.find(
+                                    entry => entry.language.name === 'en'
+                                )?.flavor_text || 'No description available.';
+
+                                // Append Pokémon card to the container
+                                container.append(`
+                                    <div class="pokemon-card">
+                                        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                                        <h3>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h3>
+                                        <p>${description}</p>
+                                    </div>
+                                `);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

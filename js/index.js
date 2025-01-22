@@ -4,8 +4,51 @@ function cerrar() {
 
 function Compartir() {
   window.location.href = 'compartir.html';
+  ("#comentario").html(info);
 
 };
+
+
+function verMas() {
+  // var url = "https://pokeapi.co/api/v2/pokemon/";
+  let i=13
+  while (i <= 30) {
+    $.ajax({
+      url: "https://pokeapi.co/api/v2/pokemon/" + i,
+      method: 'GET',
+      success: function (data) {
+        mostrarPokemon(data);
+      },
+      error: function () {
+        alert("Error al obtener los datos del Pokémon");
+      }
+    });
+    i++;
+  }
+  vermas.style.display = "none";
+
+}
+
+
+function verMasCartas() {
+  // var url = "https://pokeapi.co/api/v2/pokemon/";
+  let i=13
+  while (i <= 30) {
+    $.ajax({
+      url: "https://pokeapi.co/api/v2/pokemon/" + i,
+      method: 'GET',
+      success: function (data) {
+        mostrarPokemon(data);
+      },
+      error: function () {
+        alert("Error al obtener los datos del Pokémon");
+      }
+    });
+    i++;
+  }
+  vermas.style.display = "none";
+
+}
 
 
 
@@ -19,16 +62,16 @@ function menuBar() {
 
 $(document).ready(function () {
   loadHistorial();
-  var url = "https://pokeapi.co/api/v2/pokemon/";
+  var boton_mas = "<button class='vermas' onclick='verMas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>";
 
   for (let i = 1; i <= 12; i++) {
     $.ajax({
-      url: url + i,
+      url: "https://pokeapi.co/api/v2/pokemon/" + i,
       method: 'GET',
       success: function (data) {
         mostrarPokemon(data);
         // ("main").html("<button class='vermas' onclick='verMas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>")
-
+        $('#vermas').html(boton_mas);
 
 
       },
@@ -43,40 +86,25 @@ $(document).ready(function () {
 
 
 
-function verMas() {
-  var url = "https://pokeapi.co/api/v2/pokemon/";
-  for (let i = 13; i <= 24; i++) {
-    $.ajax({
-      url: url + i,
-      method: 'GET',
-      success: function (data) {
-        mostrarPokemon(data);
-      },
-      error: function () {
-        alert("Error al obtener los datos del Pokémon");
-      }
-
-    });
-  }
-
-}
 
 
 
 function mostrarPokemon(data) {
+  
 
   var image = data.sprites.front_default;
   var experiencia = data.base_experience
   var id = data.id
   var peso = data.weight / 10
   var altura = data.height / 10
+  
 
   var pokemonCard = `
           <div class="pokemon-card">
               <img src="${image}" alt="${data.name}">
               <div>
                 <h3>${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</h3>
-                <button class="compartir" onclick="Compartir()"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                <button class="compartir" onclick="Compartir(${data.id}, '${data.name}')"><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                 <button class="descripcion" onclick="descripcion(${data.id}, '${data.name}', '${data.sprites.front_default}')"><i class='fa fa-binoculars' aria-hidden='true'></i></button>
                 <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
               </div>
@@ -84,13 +112,15 @@ function mostrarPokemon(data) {
       `;
 
       window.descripcion = function () {
+        pokemon.forEach(function (data) {
 
         $.ajax({
             url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
             type: "GET",
             dataType: "json",
+
             success: function (data) {
-                var desc = data.flavor_text_entries[26].flavor_text;
+                var desc = data.flavor_text_entries[1].flavor_text;
                 var imagen = image;
                 modal.style.display = "block";
                 var info = `
@@ -101,7 +131,7 @@ function mostrarPokemon(data) {
                 <p><strong>Altura:</strong>${altura.toFixed(2)}m</p>
                 <p><strong>Experiencia:</strong>${experiencia}</p>
                 <p><strong>Peso:</strong>${peso}kg</p>
-                <button class='compartir' onclick='Compartir()'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
+                <button class='compartir' onclick='Compartir(${data.id}, '${data.name}')'><i class='fa fa-share-alt' aria-hidden='true'></i></button>
                 <button class="favoritos" onclick="addToFavorites(${data.id}, '${data.name}', '${image}')"><i class='fa fa-heart' aria-hidden='true'></i></button>
 
                 `
@@ -110,7 +140,7 @@ function mostrarPokemon(data) {
                 $('.info').html(info);
             },
           });
-
+        })
   }
 
 
@@ -184,30 +214,37 @@ function loadHistorial() {
 }
 
 function loadCards() {
-  $.ajax({
-    url: 'https://api.pokemontcg.io/v2/cards?pageSize=10',  // URL de la API de cartas Pokémon
-    method: 'GET',
-    success: function (response) {
-      $('#cards-container').empty();
+    i=12
+    var boton_mas = "<button class='vermas' onclick='verMasCartas()' type='button' aria-label='Buscar'><i class='fa-solid fa-ellipsis'></i></button>";
+    $.ajax({
+      url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,  // URL de la API de cartas Pokémon
+      method: 'GET',
+      success: function (response) {
+        $('#cards-container').empty();
+  
+        // Iterar sobre las cartas recibidas y agregar al DOM
+        response.data.forEach(function (card) {
+          var cardElement = `
+                    <div class="card">
+                        <img src="${card.images.small}" alt="${card.name}">
+                        <h3>${card.name}</h3>
+                        <p>Tipo: ${card.types ? card.types.join(', ') : 'Desconocido'}</p>
+                        <p>Rareza: ${card.rarity || 'Desconocida'}</p>
+                    </div>
+                `;
+          $('#cards-container').append(cardElement);
+          $('#vermas').html(boton_mas);
 
-      // Iterar sobre las cartas recibidas y agregar al DOM
-      response.data.forEach(function (card) {
-        var cardElement = `
-                  <div class="card">
-                      <img src="${card.images.small}" alt="${card.name}">
-                      <h3>${card.name}</h3>
-                      <p>Tipo: ${card.types ? card.types.join(', ') : 'Desconocido'}</p>
-                      <p>Rareza: ${card.rarity || 'Desconocida'}</p>
-                  </div>
-              `;
-        $('#cards-container').append(cardElement);
-      });
-    },
-    error: function () {
-      $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
-    }
-  });
+        });
+      },
+      error: function () {
+        $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
+      }
+    });
+ 
 }
+
+
 
 loadCards();
 

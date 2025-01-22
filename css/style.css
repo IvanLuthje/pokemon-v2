@@ -307,6 +307,10 @@ h1 {
 	/*! color: #ffffff; */
 }
 
+#alert-favoritos{
+	margin-left:30%;
+}
+
 .favoritos:hover {
 	opacity: 70%;
 }
@@ -575,7 +579,7 @@ h1 {
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
 
 	.pokemon-card {
 		width: 90%;

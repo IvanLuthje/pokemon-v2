@@ -11,8 +11,8 @@ function cerrar() {
 
 function Compartir() {
     window.location.href = 'compartir.html';
-
-};
+  
+  };
 
 
 

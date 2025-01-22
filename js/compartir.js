@@ -17,7 +17,7 @@ function enviar() {
     // const emaile = form.email_emisor.value;
     const emailr = form.email_receptor.value;
 
-    const comentario = form.comentario.value;
+    const comentario = form.info.value;
 
     // if (emaile == "") {
     //     $(".alert").html("Debe ingresar el correo electrónico");
