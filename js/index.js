@@ -35,18 +35,32 @@ function verMasCartas() {
   let i=13
   while (i <= 30) {
     $.ajax({
-      url: "https://pokeapi.co/api/v2/pokemon/" + i,
+      url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,
       method: 'GET',
-      success: function (data) {
-        mostrarPokemon(data);
+      success: function (response) {
+        $('#cards-container').empty();
+  
+        // Iterar sobre las cartas recibidas y agregar al DOM
+        response.data.forEach(function (card) {
+          var cardElement = `
+                    <div class="card">
+                        <img src="${card.images.small}" alt="${card.name}">
+                        <h3>${card.name}</h3>
+                        <p>Tipo: ${card.types ? card.types.join(', ') : 'Desconocido'}</p>
+                        <p>Rareza: ${card.rarity || 'Desconocida'}</p>
+                    </div>
+                `;
+          $('#cards-container').append(cardElement);
+        
+        });
       },
       error: function () {
-        alert("Error al obtener los datos del Pokémon");
+        $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
       }
     });
     i++;
   }
-  vermas.style.display = "none";
+  vermascartas.style.display = "none";
 
 }
 
@@ -112,7 +126,7 @@ function mostrarPokemon(data) {
       `;
 
       window.descripcion = function () {
-        pokemon.forEach(function (data) {
+
 
         $.ajax({
             url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
@@ -140,7 +154,7 @@ function mostrarPokemon(data) {
                 $('.info').html(info);
             },
           });
-        })
+       
   }
 
 
@@ -233,7 +247,7 @@ function loadCards() {
                     </div>
                 `;
           $('#cards-container').append(cardElement);
-          $('#vermas').html(boton_mas);
+          $('#vermascartas').html(boton_mas);
 
         });
       },
