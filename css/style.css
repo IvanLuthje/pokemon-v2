@@ -1,4 +1,6 @@
 /* Reset de márgenes y padding */
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -82,7 +84,7 @@ h2 {
 /* Footer */
 footer {
 	background-color: #00435F;
-	color: #fff;
+	color: #FFFFFF;
 	text-align: center;
 	padding: 10px 0;
 	font-family: lato;
@@ -187,11 +189,14 @@ h1 {
 }
 
 .modal-pokemon {
-	background-color: #FFFFFF;
-	margin: auto;
+	background-color: white;
+	margin: 50px auto;
 	padding: 20px;
-	border: 1px solid #888;
 	width: 80%;
+	max-width: 800px;
+	border-radius: 10px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	position: relative;
 }
 
 .info img {
@@ -512,6 +517,124 @@ h1 {
 
 
 /* Estilo Responsivo */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+aside {
+	width: 15%;
+	font-size: 12px;
+}
+
+h2{
+	font-size:25px;
+}
+
+/* Botones */
+
+.descripcion {
+	width: 40px;
+	height: 40px;
+
+	/*! color: #ffffff; */
+}
+
+.compartir {
+	width: 40px;
+	height: 40px;
+}
+
+.compartir:hover {
+	opacity: 70%;
+}
+
+.enviar {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #24ab2c;
+	border: none;
+	color: #1f7042;
+}
+
+.enviar:hover {
+	opacity: 70%;
+}
+
+.vermas {
+	width: 40px;
+	height: 40px;
+}
+
+.vermas:hover {
+	opacity: 70%;
+}
+
+.cancel {
+	width: 40px;
+	height: 40px;
+}
+
+.cancel:hover {
+	opacity: 70%;
+}
+
+.reset {
+	width: 40px;
+	height: 40px;
+}
+
+.reset:hover {
+	opacity: 70%;
+}
+
+
+.favoritos {
+	width: 40px;
+	height: 40px;
+
+}
+
+#alert-favoritos{
+	margin-left:30%;
+}
+
+.favoritos:hover {
+	opacity: 70%;
+}
+
+.boton_busqueda {
+	width: 50px;
+	height: 50px;
+	/* margin:-5%; */
+	border-radius: 50%;
+	background-color: #ffffff;
+	border: none;
+	/*! color: #ffffff; */
+}
+
+.boton_busqueda:hover {
+	opacity: 70%;
+}
+
+#eliminar {
+	width: 15px;
+	height: 15px;
+}
+
+.pokemon-card #eliminar {
+	width: 40px;
+	height: 40px;
+}
+
+#eliminar:hover {
+	opacity: 70%;
+}
+
+.pokemon-card{
+	padding:20px;
+}
+	
+}
+
 @media screen and (max-width: 768px) {
 
 	aside {
@@ -524,6 +647,7 @@ h1 {
 		text-align: center;
 		padding-top: 20px;
 	}
+	
 
 
 	nav ul li {
@@ -575,7 +699,7 @@ h1 {
 		text-align: center;
 		margin-top: 20px;
 		margin: 10px;
-		padding: 40px;
+		padding: 30px;
 		width: 40%;
 		box-shadow: 0 4px 8px #BBBBBB;
 		background-color: #FFFFFF;

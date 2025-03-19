@@ -10,7 +10,6 @@ function cerrar() {
 }
 
 function Compartir() {
-    $("#subject").val(desc);
     window.location.href = 'compartir.html';
   
   };
@@ -156,6 +155,7 @@ $(document).ready(function () {
                     var imagen = image;
                     var costo = data.cost
                     var tipo = data.category.name
+                    var tran = $('body').translate({lang: "en", t: dict});
                     var desc = data.flavor_text_entries[13].text
                     var modal = document.getElementById("modal");
                     modal.style.display = "block";
