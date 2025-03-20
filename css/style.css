@@ -447,7 +447,6 @@ h1 {
 	width: 30%;
 	box-shadow: 0 4px 8px #BBBBBB;
 	margin-left:25%;
-
 	background-color: #FFFFFF;
 }
 
@@ -707,6 +706,7 @@ h2{
 
 	#pokedex-info .pokemon-card {
 		margin-left:0;
+		padding:10px;
 		box-shadow: 0 4px 8px #BBBBBB;
 		background-color: #FFFFFF;
 	}
@@ -729,6 +729,11 @@ h2{
 
 	.cards-container {
 		grid-template-columns: repeat(1, 100%);
+	}
+
+	#pokedex-info .pokemon-card {
+		margin-left:0;
+		width:80%;
 	}
 
 }
