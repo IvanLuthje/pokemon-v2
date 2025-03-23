@@ -145,7 +145,7 @@ $(document).ready(function () {
         </div>
     `;
 
-        window.descripcion = function () {
+        document.descripcion = function () {
 
             $.ajax({
                 url: 'https://pokeapi.co/api/v2/item/' + data.id,
@@ -184,7 +184,7 @@ $(document).ready(function () {
     }
 
     // Función para agregar Pokémon a favoritos
-    window.addToFavorites = function (id, name, sprite) {
+    document.addToFavorites = function (id, name, sprite) {
         var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> ${name.charAt(0).toUpperCase() + name.slice(1)} ya está agregado a la lista`
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -196,7 +196,7 @@ $(document).ready(function () {
         }
 
         else {
-            $('#alert-favoritos').html(alert_added)
+            $('#alert-favoritos-pokedex').html(alert_added)
         }
 
 

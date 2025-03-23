@@ -317,6 +317,10 @@ h1 {
 }
 
 #alert-favoritos{
+	/* margin-left:30%; */
+}
+
+#alert-favoritos-pokedex{
 	margin-left:30%;
 }
 
@@ -585,6 +589,9 @@ h2{
 	opacity: 70%;
 }
 
+.vermas{
+	margin-left: 44.4%;
+}
 
 .favoritos {
 	width: 40px;
@@ -670,6 +677,10 @@ h2{
 		padding: 20px;
 	}
 
+	.vermas {
+		margin-left: 39%;
+    }
+
 
 
 	/* logo */
@@ -734,6 +745,9 @@ h2{
 	#pokedex-info .pokemon-card {
 		margin-left:0;
 		width:80%;
+	}
+    .vermas{
+		margin-left:41.7%;
 	}
 
 }

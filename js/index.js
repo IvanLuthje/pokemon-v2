@@ -20,7 +20,7 @@ function verMas() {
         mostrarPokemon(data);
       },
       error: function () {
-        alert("Error al obtener los datos del Pokémon");
+        $('#error_pokemon').html("Error al obtener los datos del Pokémon");
       }
     });
     i++;
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
       },
       error: function () {
-        alert("Error al obtener los datos del Pokémon");
+        $('#error_pokemon').html("Error al obtener los datos del Pokémon");
       }
 
 
