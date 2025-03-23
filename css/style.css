@@ -668,7 +668,7 @@ h2{
 		display: block;
 	}
 
-	# .pokemon-list {
+	.pokemon-list {
 		flex-direction: column;
 		align-items: center;
 	}
@@ -722,6 +722,9 @@ h2{
 		background-color: #FFFFFF;
 	}
 
+	#alert-favoritos-pokedex{
+	margin-left:0%;
+
 
 }
 
@@ -749,5 +752,10 @@ h2{
     .vermas{
 		margin-left:41.7%;
 	}
+
+	#alert-favoritos-pokedex{
+		margin-left:10%;
+
+}
 
 }
