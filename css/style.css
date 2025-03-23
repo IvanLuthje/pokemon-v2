@@ -322,6 +322,7 @@ h1 {
 
 #alert-favoritos-pokedex{
 	margin-left:30%;
+	display:block;
 }
 
 .favoritos:hover {
@@ -723,7 +724,23 @@ h2{
 	}
 
 	#alert-favoritos-pokedex{
-	margin-left:0%;
+		margin-left:0%;
+		display:block;
+	}
+
+	#favorites-list-resp{
+		display:block;
+	}
+
+	 #favorites-list{
+		 padding:10%;
+		 display:block;
+	 }
+
+	 #favorites-list span{
+		 padding:10%;
+		 display:block;
+	 }
 
 
 }
