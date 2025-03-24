@@ -210,6 +210,8 @@ $(document).ready(function () {
     function loadFavorites() {
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         $('#favorites-list').empty();
+        $('#favorites-list-r').empty();
+
 
         if (favorites.length) {
 
@@ -221,12 +223,14 @@ $(document).ready(function () {
                   </li>
               `;
                 $('#favorites-list').append(favoriteItem);
+                $('#favorites-list-r').append(favoriteItem);
             });
 
         }
 
         else {
             $('#favorites-list').html("No se encuentran favoritos")
+            $('#favorites-list-r').html("No se encuentran favoritos")
         }
 
     }
@@ -251,6 +255,7 @@ $(document).ready(function () {
 
 
                 $('#historial-list').append(favoriteItem);
+                
             });
 
             
