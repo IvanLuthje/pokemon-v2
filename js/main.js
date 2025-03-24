@@ -318,5 +318,11 @@ $(document).ready(function () {
         loadHistorial();
     });
 
+    $('#eliminar-todos-resp').click(function () {
+        localStorage.clear();
+        loadFavorites();
+        loadHistorial();
+      });
+
 
 });

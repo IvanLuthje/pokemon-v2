@@ -375,6 +375,16 @@ h1 {
 	/* margin:-0.7%; */
 }
 
+#eliminar-todos-resp {
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	background-color: #ffa500;
+	border: none;
+	color: #ffffff;
+	/* margin:-0.7%; */
+}
+
 #eliminar-todos:hover {
 	opacity: 70%;
 }
@@ -695,6 +705,11 @@ h2{
 
 	.id_nombre {
 		width: 80%;
+	}
+
+	#inicio img {
+		width: 90%;
+		height: 300px;
 	}
 
 	#filtro {

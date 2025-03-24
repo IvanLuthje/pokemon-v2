@@ -271,7 +271,6 @@ loadCards();
 // Función para eliminar un Pokémon de los favoritos
 window.eliminar = function (id) {
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-  //   favorites = favorites.filter(fav => fav.id !== id);
   favorites = favorites.filter(fav => fav.id !== id);
   localStorage.setItem('favorites', JSON.stringify(favorites));
   loadHistorial();
@@ -279,13 +278,12 @@ window.eliminar = function (id) {
 };
 
 
-
+// Función para eliminar todos los Pokémon de los favoritos, se limpia localstorage
 
 $('#eliminar-todos').click(function () {
   localStorage.clear();
   loadFavorites();
   loadHistorial();
 });
-
 
 
