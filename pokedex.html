@@ -8,6 +8,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='css/style.css'>
     <link rel="icon" type="image/x-icon" href="img/pokeball-logo.png">
     <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -52,10 +53,17 @@
         <!--option value="sel" id="opciones">---Seleccionar opción---</option-->
         <option value="nombre" id="opciones">Nombre</option>
         <option value="item" id="opciones">Item</option>
-        <option value="maquinas" id="opciones">Maquinas</option>
+        <option value="maquinas" id="opciones"></option>
     </select>
 
-    <div id="pokemon-info"></div>
+    <div id="pokedex-info"></div>
+    <div id="alert-favoritos-pokedex"></div>    
+
+    <section id="favorites-list-resp">
+        <h2>Favoritos</h2>
+        <div id="favorites-list-r"></div>
+        <button id="eliminar-todos">Eliminar todos</button>
+    </section>
 
     
    
@@ -63,6 +71,8 @@
         <div class="modal-pokemon">
             <span class="cerrar" onclick="cerrar()">&times;</span>
             <div class="info"></div>
+            <div id="alert-favoritos-pokedex"></div>    
+
         </div>
     </div>
 
