@@ -3,7 +3,7 @@ function cerrar() {
 }
 
 function Compartir() {
-  window.location.href = 'compartir.html';
+  document.location.href = 'compartir.html';
   ("#comentario").html(info);
 
 };
@@ -38,7 +38,7 @@ function verMasCartas() {
       url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,
       method: 'GET',
       success: function (response) {
-        $('#cards-container').empty();
+        $('#cards-info').empty();
   
         // Iterar sobre las cartas recibidas y agregar al DOM
         response.data.forEach(function (card) {
@@ -50,12 +50,12 @@ function verMasCartas() {
                         <p>Rareza: ${card.rarity || 'Desconocida'}</p>
                     </div>
                 `;
-          $('#cards-container').append(cardElement);
+          $('#cards-info').append(cardElement);
         
         });
       },
       error: function () {
-        $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
+        $('#cards-info').html('Error al cargar las cartas. Intenta nuevamente.');
       }
     });
     i++;
@@ -125,7 +125,7 @@ function mostrarPokemon(data) {
           </div>
       `;
 
-      window.descripcion = function () {
+      document.descripcion = function () {
 
 
         $.ajax({
@@ -163,7 +163,7 @@ function mostrarPokemon(data) {
 
 
 // Función para agregar Pokémon a favoritos
-window.addToFavorites = function (id, name, sprite) {
+document.addToFavorites = function (id, name, sprite) {
   var alert_added = `<i class='fa fa-heart' aria-hidden='true'></i> Pokemon ${name} ya está agregado a la lista`
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -234,7 +234,7 @@ function loadCards() {
       url: "https://api.pokemontcg.io/v2/cards?pageSize=" + i,  // URL de la API de cartas Pokémon
       method: 'GET',
       success: function (response) {
-        $('#cards-container').empty();
+        $('#cards-info').empty();
   
         // Iterar sobre las cartas recibidas y agregar al DOM
         response.data.forEach(function (card) {
@@ -246,13 +246,13 @@ function loadCards() {
                         <p>Rareza: ${card.rarity || 'Desconocida'}</p>
                     </div>
                 `;
-          $('#cards-container').append(cardElement);
+          $('#cards-info').append(cardElement);
           $('#vermascartas').html(boton_mas);
 
         });
       },
       error: function () {
-        $('#cards-container').html('Error al cargar las cartas. Intenta nuevamente.');
+        $('#cards-info').html('Error al cargar las cartas. Intenta nuevamente.');
       }
     });
  
@@ -269,7 +269,7 @@ loadCards();
 
 
 // Función para eliminar un Pokémon de los favoritos
-window.eliminar = function (id) {
+document.eliminar = function (id) {
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
   favorites = favorites.filter(fav => fav.id !== id);
   localStorage.setItem('favorites', JSON.stringify(favorites));

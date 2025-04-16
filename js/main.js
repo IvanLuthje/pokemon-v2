@@ -10,9 +10,8 @@ function cerrar() {
 }
 
 function Compartir() {
-    window.location.href = 'compartir.html';
-  
-  };
+    document.location.href = 'compartir.html';
+};
 
 
 
@@ -89,7 +88,7 @@ $(document).ready(function () {
       
 
 
-        window.descripcion = function () {
+        document.descripcion = function () {
 
             $.ajax({
                 url: 'https://pokeapi.co/api/v2/pokemon-species/' + data.name,
@@ -155,7 +154,6 @@ $(document).ready(function () {
                     var imagen = image;
                     var costo = data.cost
                     var tipo = data.category.name
-                    var tran = $('body').translate({lang: "en", t: dict});
                     var desc = data.flavor_text_entries[13].text
                     var modal = document.getElementById("modal");
                     modal.style.display = "block";
@@ -301,7 +299,7 @@ $(document).ready(function () {
 
 
     // Función para eliminar un Pokémon de los favoritos
-    window.eliminar = function (id) {
+    document.eliminar = function (id) {
         let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         //   favorites = favorites.filter(fav => fav.id !== id);
         favorites = favorites.filter(fav => fav.id !== id);

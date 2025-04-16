@@ -80,6 +80,12 @@ h2 {
 	font-family: 'Sansita';
 }
 
+hr{
+    width: 20%;
+    margin-left:40%;
+}
+
+
 
 /* Footer */
 footer {
@@ -139,6 +145,7 @@ h1 {
 
 /* Sección de Pokémon */
 #pokemon-info,
+#cards-info,
 #historial-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -419,7 +426,7 @@ h1 {
 /* Formulario */
 
 
-#email_receptor {
+#email_receptor, #email_emisor {
 	margin-top: 0;
 	height: 26px;
 	border-radius: 30px;
@@ -482,12 +489,12 @@ h1 {
 	height: auto;
 }
 
-.cards-container {
+/* .cards-container {
 	display: grid;
 	grid-template-columns: repeat(3, 30%);
 	gap: 20px;
 	padding: 20px;
-}
+} */
 
 .card {
 	background-color: #fff;
@@ -784,6 +791,25 @@ h2{
 	#alert-favoritos-pokedex{
 		margin-left:10%;
 
+	}
+
+}
+
+@media screen and (max-width: 300px) {
+
+	.descripcion{
+		width: 25px;
+		height: 25px;
+	}
+
+	.compartir{
+		width: 25px;
+		height: 25px;
+	}
+
+	.favoritos{
+		width: 25px;
+		height: 25px;
 	}
 
 }
